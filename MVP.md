@@ -31,9 +31,7 @@ Here is the evaluation for each NN:
 
 The SaP models are less accurate in the early game, but perform better in the late game, and the opposite is true for MaP. Intuitively, this makes sense: in the early game, there are many pieces that could be moved given a certain board state, but once a piece is chosen, the number of moves is limited (for example, the knight has only 2 available moves on its starting square). In the late game, there are fewer pieces to move because many will have been captured, however, each of these pieces will have more moves available (the knight in the center of the board has 8 possible moves).
 
-Here is a demonstration of the softmax output (shaped into an 8x8 grid to match the chess board) from the engine and the resulting move on the chess board
-
-White cells show a high rating from the softmax activation. In this case, the engine wanted to move the bishop on f1, but it also considered knight and pawn moves on the other side of the board.
+Below is a demonstration of the softmax output shaped into an 8x8 grid to match the chess board from the engine and the resulting move on the chess board (left). White cells in the heatmap show a high rating from the softmax activation. The state of the board after the engine's move is shown on the right. In this case, the engine wanted to move the bishop on f1, but it also considered knight and pawn moves on the other side of the board.
 
 ![Decision Space](decision_space.png)
 ![Board After Move](chess_board_screenshot.png)
