@@ -14,6 +14,8 @@ I fit this model and played a game and realized two significant issues:
 1. The engine often tried to play with the opponent's pieces.
 2. Most games start by playing either e4e6 or d4d6, and these squares were selected as the best moves even into the late game when these squares were empty.
 
+The first problem was relatively easy to fix: I split out the training data into white and black pieces, and I trained separate models to play with each color. After this change, the model rarely chose to play with the opponent's pieces.
+
 To address the second problem, I recognized that the early, mid, and late game stages of a chess game are played differently: the early game is somewhat formulaic and governed by opening theory, the mid-game is positional and usually requires many trades, the end game requires playing with pieces in positions that are uncommon to the earlier stages in the game; for instance, the white rook may patrol the opponent's 7th rank. To help remedy this, I created separate models for each of those three game stages and added a condition in my function that generates a move to check the turn count to determine which model to use.
 
 Here is the evaluation for each NN:
