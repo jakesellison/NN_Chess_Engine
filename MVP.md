@@ -40,7 +40,9 @@ Below is a demonstration of the softmax output shaped into an 8x8 grid for the S
 
 I've listed a few optimizations below, but first a note on my evaluation metric. Through experimentation, I realized that benchmarking performance against random moves is not a good measure. Random moves cause the NN models to quickly go beyond their training data, since the random moves are so nonstandard. When I play normal moves against the engine, it performs far better through the early and mid game. However, it still falls apart in the late game because it gets stuck shuffling around pieces rather than improving its position.
 
-**Potential Optimizations**
-1. I've built this model using only dense layers, however I'd like to try adding convolutional layers to see if they will help the engine see useful move patterns anywhere on the board (like a pawn capturing diagonally on the opponents back rank)
+**Future Optimizations**
+1. I built this model using only dense layers, however I'd like to try adding convolutional layers to see if they will help the engine see useful move patterns anywhere on the board (like finding an easy queen capture anywhere on the board).
 2. Currently I move from early -> mid -> late game by tracking turn count. Instead, I'd like to try advancing the game stage based on pieces remaining on the board. 
 3. I would like to try splitting out the MaP neural networks into separate models for each piece. The SaP model might choose a pawn move, for instance, and I'll then pass the MaP decision to a NN built with only pawn-move training data. I think that this change might reduce the amount of piece-shuffling in the late game.
+4. Lastly, and a larger lift than the preceding points is redesigning the chess engine to use Q-learning to build a new model that would better understand piece evaluations and have a sense for how a move will impact future outcomes, which would perform much better than my current near-sighted implementation.
+
